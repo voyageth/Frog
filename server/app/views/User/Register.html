@@ -1,0 +1,43 @@
+{{set . "title" "Home"}}
+{{template "header.html" .}}
+
+<div class="container">
+    <h1>Register</h1>
+    
+    <div class="row">
+        <div class="span6">
+            {{template "flash.html" .}}
+        </div>
+    </div>
+    
+    <form action="/User/RegisterRequest" method="GET">
+        {{with $field := field "userEmail" .}}
+            <div class="form-group {{$field.ErrorClass}}">
+                <label for="emailInput">Email</label>
+                <input type="email" class="form-control" id="emailInput" placeholder="Email" size="30" name="{{$field.Name}}" value="{{$field.Flash}}">
+                <span class="error">{{$field.Error}}</span>
+            </div>
+        {{end}}
+        
+        {{with $field := field "password" .}}
+            <div class="form-group {{$field.ErrorClass}}">
+                <label for="passwordInput">Password</label>
+                <input type="password" class="form-control" id="passwordInput" placeholder="Password" size="20" name="{{$field.Name}}" value="{{$field.Flash}}">
+                <span class="error">{{$field.Error}}</span>
+            </div>
+        {{end}}
+        
+        {{with $field := field "userName" .}}
+            <div class="form-group {{$field.ErrorClass}}">
+                <label for="userNameInput">Name</label>
+                <input type="text" class="form-control" id="userNameInput" placeholder="Name" size="20" name="{{$field.Name}}" value="{{$field.Flash}}">
+                <span class="error">{{$field.Error}}</span>
+            </div>
+        {{end}}
+        
+        
+        <input type="submit" value="Sign Up"/>
+    </form>
+</div>
+
+{{template "footer.html" .}}

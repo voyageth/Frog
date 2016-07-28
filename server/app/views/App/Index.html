@@ -1,0 +1,15 @@
+{{set . "title" "Home"}}
+{{template "header.html" .}}
+
+<div class="container">
+  <h1>main!</h1>
+
+  <p>
+    <a href="{{url "User.Index"}}">Login</a>
+  </p>
+  <p>
+    <a href="{{url "User.Register"}}">Register New User</a>
+  </p>
+</div>
+
+{{template "footer.html" .}}
