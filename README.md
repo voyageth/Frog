@@ -7,7 +7,7 @@ Simple Go Web Application
 cd $GO_PATH
 mkdir frog
 cd frog
-git clone https://github.com/voyageth/Frog.git
+git clone https://github.com/voyageth/frog.git
 ```
 
 ### change directory
