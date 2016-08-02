@@ -14,10 +14,12 @@ func (c User) Index() revel.Result {
 }
 
 func (c User) Login(userEmail string, password string) revel.Result {
+	// TODO create login cookie. https://revel.github.io/manual/sessionflash.html
 	return c.Redirect(App.Index)
 }
 
 func (c User) Logout() revel.Result {
+	// TODO delete login cookie.
 	return c.Redirect(App.Index)
 }
 
