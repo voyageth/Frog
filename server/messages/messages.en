@@ -1,0 +1,20 @@
+# Sample messages file for the English language (en)
+# Message file extensions should be ISO 639-1 codes (http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes)
+# Sections within each message file can optionally override the defaults using ISO 3166-1 alpha-2 codes (http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
+# See also:
+# - http://www.rfc-editor.org/rfc/bcp/bcp47.txt
+# - http://www.w3.org/International/questions/qa-accept-lang-locales
+password=Password
+user.register.email.required=Email is required.
+user.register.email.tooShort=Email is too short.
+user.register.email.tooLong=Email is too long.
+user.register.name.required=Name is required.
+user.register.name.tooShort=Name is too short.
+user.register.name.tooLong=Name is too long.
+user.register.password.required=Password is required.
+user.register.password.tooShort=Password is too short.
+user.register.password.tooLong=Password is too long.
+register=Register
+name=Name
+email=Email
+signup=Sign Up

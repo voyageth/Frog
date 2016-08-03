@@ -1,0 +1,14 @@
+password=비밀번호
+user.register.email.required=Email 주소를 입력해 주세요.
+user.register.email.tooShort=Email 주소가 너무 짧습니다.
+user.register.email.tooLong=Email 주소가 너무 깁니다.
+user.register.name.required=이름을 입력해 주세요.
+user.register.name.tooShort=이름이 너무 짧습니다.
+user.register.name.tooLong=이름이 너무 깁니다.
+user.register.password.required=비밀번호를 입력해 주세요.
+user.register.password.tooShort=비밀번호가 너무 짧습니다.
+user.register.password.tooLong=비밀번호가 너무 깁니다.
+register=가입
+name=이름
+email=이메일
+signup=가입

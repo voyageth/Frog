@@ -30,19 +30,20 @@ func (c User) Register() revel.Result {
 }
 
 func (c User) RegisterRequest(userEmail string, userName string, password string) revel.Result {
+	log.Print(revel.MessageLanguages())
 	log.Print("userEmail : ", userEmail, ", userName : ", userName)
-	c.Validation.Required(userEmail).Message("Email is required!")
-	c.Validation.MinSize(userEmail, 3).Message("Email is too short!")
-	c.Validation.MaxSize(userEmail, 30).Message("Email is too long!")
+	c.Validation.Required(userEmail).Message(c.Message("user.register.email.required"))
+	c.Validation.MinSize(userEmail, 3).Message(c.Message("user.register.email.tooShort"))
+	c.Validation.MaxSize(userEmail, 30).Message(c.Message("user.register.email.tooLong"))
 	// TODO email format check
 
-	c.Validation.Required(userName).Message("Name is required!")
-	c.Validation.MinSize(userName, 3).Message("Name is too short!")
-	c.Validation.MaxSize(userName, 20).Message("Name is too long!")
+	c.Validation.Required(userName).Message(c.Message("user.register.name.required"))
+	c.Validation.MinSize(userName, 3).Message(c.Message("user.register.name.tooShort"))
+	c.Validation.MaxSize(userName, 20).Message(c.Message("user.register.name.tooLong"))
 
-	c.Validation.Required(password).Message("Password is required!")
-	c.Validation.MinSize(password, 4).Message("Password is too short!")
-	c.Validation.MaxSize(password, 20).Message("Password is too long!")
+	c.Validation.Required(password).Message(c.Message("user.register.password.required"))
+	c.Validation.MinSize(password, 4).Message(c.Message("user.register.password.tooShort"))
+	c.Validation.MaxSize(password, 20).Message(c.Message("user.register.password.tooLong"))
 
 	if c.Validation.HasErrors() {
 		c.Validation.Keep()
