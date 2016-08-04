@@ -51,5 +51,9 @@ func (c User) RegisterRequest(userEmail string, userName string, password string
 		return c.Redirect(User.Register)
 	}
 
+	// TODO #4 store to db
+
+	// TODO #5 request email verification
+
 	return c.Redirect(User.Login, userName)
 }
