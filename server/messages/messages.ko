@@ -12,3 +12,4 @@ register=가입
 name=이름
 email=이메일
 signup=가입
+user.register.email.format=잘못된 Email 형식입니다.

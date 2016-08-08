@@ -18,3 +18,4 @@ register=Register
 name=Name
 email=Email
 signup=Sign Up
+user.register.email.format=Wrong email format

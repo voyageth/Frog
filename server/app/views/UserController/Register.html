@@ -10,8 +10,8 @@
         </div>
     </div>
 
-    <form action='{{url "User.RegisterRequest"}}' method="GET">
-        {{with $field := field "userEmail" .}}
+    <form action='{{url "UserController.RegisterRequest"}}' method="GET">
+        {{with $field := field "user.Id" .}}
         <div class="form-group {{$field.ErrorClass}}">
             <label for="emailInput">{{msg $ "email"}}</label>
             <input type="email" class="form-control" id="emailInput" placeholder='{{msg $ "email"}}' size="30"
@@ -20,7 +20,7 @@
         </div>
         {{end}}
 
-        {{with $field := field "password" .}}
+        {{with $field := field "user.Password" .}}
         <div class="form-group {{$field.ErrorClass}}">
             <label for="passwordInput">{{msg $ "password"}}</label>
             <input type="password" class="form-control" id="passwordInput" placeholder='{{msg $ "password"}}'
@@ -30,7 +30,7 @@
         </div>
         {{end}}
 
-        {{with $field := field "userName" .}}
+        {{with $field := field "user.Name" .}}
         <div class="form-group {{$field.ErrorClass}}">
             <label for="userNameInput">{{msg $ "name"}}</label>
             <input type="text" class="form-control" id="userNameInput" placeholder='{{msg $ "name"}}' size="20"

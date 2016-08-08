@@ -1,0 +1,45 @@
+{{set . "title" "Home"}}
+{{template "header.html" .}}
+
+<div class="container" id="login">
+    <h1>Login</h1>
+
+    <form action='{{url "UserController.Login"}}' method="GET">
+        {{with $field := field "userEmail" .}}
+        <div class="form-group {{$field.ErrorClass}}">
+            <label for="emailInput">Email</label>
+            <input type="email" class="form-control" id="emailInput" placeholder="Email" size="30"
+                   name="{{$field.Name}}" value="{{$field.Flash}}">
+            <span class="error">{{$field.Error}}</span>
+        </div>
+        {{end}}
+
+        {{with $field := field "password" .}}
+        <div class="form-group {{$field.ErrorClass}}">
+            <label for="passwordInput">Password</label>
+            <input type="password" class="form-control" id="passwordInput" placeholder="Password" size="20"
+                   name="{{$field.Name}}" value="{{$field.Flash}}">
+            <span class="error">{{$field.Error}}</span>
+        </div>
+        {{end}}
+
+        {{with $field := field "remember" .}}
+        <div class="form-group {{$field.ErrorClass}}">
+            <label for="rememberInput">remember</label>
+            <input type="checkbox" class="form-control" id="rememberInput" name="{{$field.Name}}"
+                   value="{{$field.Flash}}">
+            <span class="error">{{$field.Error}}</span>
+        </div>
+        {{end}}
+
+
+        <input type="submit" value="Sign In"/>
+    </form>
+
+    <p>
+        <a href='{{url "UserController.Register"}}'>Register New User</a>
+    </p>
+
+</div>
+
+{{template "footer.html" .}}

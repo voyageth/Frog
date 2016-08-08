@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/revel/revel"
 	"regexp"
+	"log"
 )
 
 type User struct {
@@ -19,31 +20,24 @@ func (user *User) String() string {
 	return fmt.Sprintf("User(id : %s, name : %s)", user.Id, user.Name)
 }
 
-var userRegex = regexp.MustCompile("^\\w*$")
+var userRegex = regexp.MustCompile(`\w[-._\w]*\w@\w[-._\w]*\w\.\w{2,3}`)
 
-func (user *User) Validate(v *revel.Validation) {
-	v.Check(
-		user.Id,
-		revel.Required{},
-		revel.MaxSize{15},
-		revel.MinSize{4},
-		revel.Match{userRegex},
-	)
+func (user *User) Validate(c *revel.Controller, v *revel.Validation) {
+	log.Print("user : " + user.Id)
+	v.Required(user.Id).Message(c.Message("user.register.email.required"))
+	v.MinSize(user.Id, 3).Message(c.Message("user.register.email.tooShort"))
+	v.MaxSize(user.Id, 30).Message(c.Message("user.register.email.tooLong"))
+	v.Match(user.Id, userRegex).Message(c.Message("user.register.email.format"))
 
-	v.Check(
-		user.Name,
-		revel.Required{},
-		revel.MaxSize{100},
-	)
+	v.Required(user.Name).Message(c.Message("user.register.name.required"))
+	v.MinSize(user.Name, 3).Message(c.Message("user.register.name.tooShort"))
+	v.MaxSize(user.Name, 20).Message(c.Message("user.register.name.tooLong"))
 
-	ValidatePassword(v, user.Password).Key("user.Password")
+	ValidatePassword(c, v, user.Password)
 }
 
-func ValidatePassword(v *revel.Validation, password string) *revel.ValidationResult {
-	return v.Check(
-		password,
-		revel.Required{},
-		revel.MaxSize{15},
-		revel.MinSize{5},
-	)
+func ValidatePassword(c *revel.Controller, v *revel.Validation, password string) {
+	v.Required(password).Message(c.Message("user.register.password.required"))
+	v.MinSize(password, 4).Message(c.Message("user.register.password.tooShort"))
+	v.MaxSize(password, 20).Message(c.Message("user.register.password.tooLong"))
 }
