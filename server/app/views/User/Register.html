@@ -10,7 +10,7 @@
         </div>
     </div>
 
-    <form action="/User/RegisterRequest" method="GET">
+    <form action='{{url "User.RegisterRequest"}}' method="GET">
         {{with $field := field "userEmail" .}}
         <div class="form-group {{$field.ErrorClass}}">
             <label for="emailInput">{{msg $ "email"}}</label>

@@ -6,7 +6,7 @@ import (
 )
 
 type User struct {
-	*revel.Controller
+	App
 }
 
 const SESSION_KEY_LOGIN = "frog_login"

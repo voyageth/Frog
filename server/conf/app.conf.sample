@@ -1,46 +1,49 @@
 # Application
-app.name = frog
-app.secret = #Secret here#
+app.name=frog
+app.secret=#Secret here#
 
 # Server
-http.addr =
+http.addr=
 http.port=8080
-http.ssl = false
-http.sslcert =
+http.ssl=false
+http.sslcert=
 http.sslkey=
 
 # Logging
-log.trace.output = stderr
-log.info.output = stderr
-log.warn.output = stderr
-log.error.output = stderr
+log.trace.output=stderr
+log.info.output=stderr
+log.warn.output=stderr
+log.error.output=stderr
 
-log.trace.prefix = "TRACE "
-log.info.prefix = "INFO  "
-log.warn.prefix = "WARN  "
-log.error.prefix = "ERROR "
+log.trace.prefix="TRACE "
+log.info.prefix="INFO  "
+log.warn.prefix="WARN  "
+log.error.prefix="ERROR "
 
-db.import = github.com/go-sql-driver/mysql
-db.driver = mysql
-db.spec = #userId:password:db-url#
+db.import=github.com/go-sql-driver/mysql
+db.driver=mysql
 
-build.tags = gorp
+build.tags=gorp
 
 #module.jobs=github.com/revel/modules/jobs
-module.static = github.com/revel/modules/static
+module.static=github.com/revel/modules/static
 
 i18n.default_language=en
 
 [dev]
-mode.dev = true
-watch = true
+mode.dev=true
+watch=true
 #module.testrunner=github.com/revel/modules/testrunner
 
-[prod]
-watch = false
-module.testrunner =
+db.spec=id:password@tcp(url:port)/databaseName
 
-log.trace.output = on
-log.info.output = on
-log.warn.output = stderr
-log.error.output = stderr
+[prod]
+watch=false
+module.testrunner=
+
+log.trace.output=on
+log.info.output=on
+log.warn.output=stderr
+log.error.output=stderr
+
+db.spec=id:password@tcp(url:port)/databaseName
