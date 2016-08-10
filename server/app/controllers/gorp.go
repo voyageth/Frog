@@ -29,21 +29,26 @@ func InitDB() {
 	t := Dbm.AddTable(models.User{}).SetKeys(true, "No")
 	t.ColMap("Password").Transient = true
 	t.ColMap("EmailDomain").Transient = true
-	t.ColMap("Name").Unique = true
+	t.ColMap("Email").SetUnique(true)
+	t.ColMap("Email").SetNotNull(true)
+	t.ColMap("Name").SetUnique(true)
+	t.ColMap("Name").SetNotNull(true)
 	setColumnSizes(t, map[string]int{
-		"Id":   200,
+		"Email":   200,
 		"Name": 200,
 	})
 
 	t = Dbm.AddTable(models.Company{}).SetKeys(true, "No")
-	t.ColMap("Name").Unique = true
+	t.ColMap("Name").SetUnique(true)
+	t.ColMap("Name").SetNotNull(true)
 	setColumnSizes(t, map[string]int{
 		"Name": 200,
 	})
 
 	t = Dbm.AddTable(models.EmailDomain{}).SetKeys(true, "No")
-	t.ColMap("Domain").Unique = true
 	t.ColMap("Company").Transient = true
+	t.ColMap("Domain").SetUnique(true)
+	t.ColMap("Domain").SetNotNull(true)
 	setColumnSizes(t, map[string]int{
 		"Domain": 200,
 	})

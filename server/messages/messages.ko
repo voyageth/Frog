@@ -13,3 +13,6 @@ name=이름
 email=이메일
 signup=가입
 user.register.email.format=잘못된 Email 형식입니다.
+server.error=알 수 없는 서버 오류!
+user.register.email.duplicated=이미 사용 중인 Email 입니다.
+user.register.name.duplicated=이미 사용 중인 이름 입니다.

@@ -11,7 +11,7 @@
     </div>
 
     <form action='{{url "UserController.RegisterRequest"}}' method="GET">
-        {{with $field := field "user.Id" .}}
+        {{with $field := field "user.Email" .}}
         <div class="form-group {{$field.ErrorClass}}">
             <label for="emailInput">{{msg $ "email"}}</label>
             <input type="email" class="form-control" id="emailInput" placeholder='{{msg $ "email"}}' size="30"
