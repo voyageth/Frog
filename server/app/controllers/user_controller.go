@@ -4,6 +4,7 @@ import (
 	"github.com/revel/revel"
 	"log"
 	"frog/server/app/models"
+	"golang.org/x/crypto/bcrypt"
 )
 
 type UserController struct {
@@ -42,8 +43,20 @@ func (c UserController) RegisterRequest(user *models.User) revel.Result {
 		return c.Redirect(UserController.Register)
 	}
 
-	// TODO #4 store to db
-	c.Txn.Insert(user)
+	// Hashing the password with the default cost of 10
+	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(user.Password), bcrypt.DefaultCost)
+	if err != nil {
+		panic(err)
+	}
+	user.HashedPassword = hashedPassword
+
+	err = c.Txn.Insert(user)
+	if err != nil {
+		c.Flash.Error(err.Error())
+		c.Validation.Keep()
+		c.FlashParams()
+		return c.Redirect(UserController.Register)
+	}
 
 	// TODO #5 request email verification
 
