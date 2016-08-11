@@ -19,9 +19,33 @@ func (c UserController) Index() revel.Result {
 	return c.Render()
 }
 
-func (c UserController) Login(userEmail string, password string) revel.Result {
-	c.Session[SESSION_KEY_LOGIN] = userEmail
-	return c.Redirect(App.Index)
+func (c UserController) LoginRequest(userEmail string, password string) revel.Result {
+	var user models.User
+	err := c.Txn.SelectOne(&user, "select * from User where Email=?", userEmail)
+	log.Println(user)
+	log.Println(err)
+	if err != nil {
+		log.Println(err.Error())
+		c.Flash.Error(c.Message("server.error"))
+		c.Validation.Keep()
+		c.FlashParams()
+		return c.Redirect(UserController.Index)
+	}
+
+	hashedPassword := user.HashedPassword
+	passwordCompareErr := bcrypt.CompareHashAndPassword(hashedPassword, []byte(password))
+	if passwordCompareErr == nil {
+		// TODO #6 more complicate login cookie
+		// TODO #6 add login validation interceptor
+		c.Session[SESSION_KEY_LOGIN] = userEmail
+		return c.Redirect(App.Index)
+	} else {
+		log.Println(passwordCompareErr.Error())
+		c.Flash.Error(c.Message("user.login.password.wrong"))
+		c.Validation.Keep()
+		c.FlashParams()
+		return c.Redirect(UserController.Index)
+	}
 }
 
 func (c UserController) Logout() revel.Result {

@@ -22,3 +22,5 @@ user.register.email.format=Wrong email format
 server.error=Unknown server error!
 user.register.email.duplicated=Duplicate email.
 user.register.name.duplicated=Duplicate name.
+user.login.password.wrong=Wrong password!
+login.title=Login
