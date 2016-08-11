@@ -107,5 +107,5 @@ func (c UserController) RegisterRequest(user *models.User) revel.Result {
 
 	// TODO #5 request email verification
 
-	return c.Redirect(UserController.Login, user.Name)
+	return c.Redirect(UserController.Index, user.Name)
 }
