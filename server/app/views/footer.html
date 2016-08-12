@@ -1,5 +1,39 @@
-  {{if eq .RunMode "dev"}}
-    {{template "debug.html" .}}
-  {{end}}
-  </body>
+{{if eq .RunMode "dev"}}
+{{template "debug.html" .}}
+{{end}}
+
+<!-- Footer -->
+<footer id="footer">
+    <div class="container">
+        <div class="row double">
+            <div class="6u">
+                <div class="row collapse-at-2">
+                    <div class="6u">
+                        <h3>Source</h3>
+                        <ul class="alt">
+                            <li><a href="https://github.com/voyageth/frog">Code</a></li>
+                            <li><a href="https://github.com/voyageth/frog/issues">Issues</a></li>
+                            <li><a href="https://github.com/voyageth/frog/pulls">Pull requests</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="6u">
+                <h2>Frog</h2>
+                <p>made by voyageth</p>
+                <ul class="icons">
+                    <li><a href="https://github.com/voyageth" class="icon fa-github"><span
+                            class="label">Github</span></a></li>
+                </ul>
+            </div>
+        </div>
+        <ul class="copyright">
+            <li>&copy; Untitled. All rights reserved.</li>
+            <li>Design: <a href="http://templated.co">TEMPLATED</a></li>
+            <li>Images: <a href="http://unsplash.com">Unsplash</a></li>
+        </ul>
+    </div>
+</footer>
+
+</body>
 </html>

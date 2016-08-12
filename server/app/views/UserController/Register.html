@@ -1,47 +1,60 @@
 {{set . "title" "Home"}}
 {{template "header.html" .}}
 
-<div class="container">
-    <h1>{{msg . "register"}}</h1>
+<!-- Three -->
+<section id="three" class="wrapper style1">
+    <div class="container">
+        <h2>{{msg . "register"}}</h2>
 
-    <div class="row">
-        <div class="span6">
-            {{template "flash.html" .}}
+        <div class="row">
+            <div class="span6">
+                {{template "flash.html" .}}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="8u">
+                <section>
+
+                    <form action='{{url "UserController.RegisterRequest"}}' method="GET">
+                        {{with $field := field "user.Email" .}}
+                        <div class="form-group {{$field.ErrorClass}}">
+                            <label for="emailInput">{{msg $ "email"}}</label>
+                            <input type="email" class="form-control" id="emailInput" placeholder='{{msg $ "email"}}'
+                                   size="30"
+                                   name="{{$field.Name}}" value="{{$field.Flash}}">
+                            <span class="error">{{$field.Error}}</span>
+                        </div>
+                        {{end}}
+
+                        {{with $field := field "user.Password" .}}
+                        <div class="form-group {{$field.ErrorClass}}">
+                            <label for="passwordInput">{{msg $ "password"}}</label>
+                            <input type="password" class="form-control" id="passwordInput"
+                                   placeholder='{{msg $ "password"}}'
+                                   size="20"
+                                   name="{{$field.Name}}" value="{{$field.Flash}}">
+                            <span class="error">{{$field.Error}}</span>
+                        </div>
+                        {{end}}
+
+                        {{with $field := field "user.Name" .}}
+                        <div class="form-group {{$field.ErrorClass}}">
+                            <label for="userNameInput">{{msg $ "name"}}</label>
+                            <input type="text" class="form-control" id="userNameInput" placeholder='{{msg $ "name"}}'
+                                   size="20"
+                                   name="{{$field.Name}}" value="{{$field.Flash}}">
+                            <span class="error">{{$field.Error}}</span>
+                        </div>
+                        {{end}}
+
+
+                        <input type="submit" value='{{msg $ "signup"}}'/>
+                    </form>
+                </section>
+            </div>
         </div>
     </div>
-
-    <form action='{{url "UserController.RegisterRequest"}}' method="GET">
-        {{with $field := field "user.Email" .}}
-        <div class="form-group {{$field.ErrorClass}}">
-            <label for="emailInput">{{msg $ "email"}}</label>
-            <input type="email" class="form-control" id="emailInput" placeholder='{{msg $ "email"}}' size="30"
-                   name="{{$field.Name}}" value="{{$field.Flash}}">
-            <span class="error">{{$field.Error}}</span>
-        </div>
-        {{end}}
-
-        {{with $field := field "user.Password" .}}
-        <div class="form-group {{$field.ErrorClass}}">
-            <label for="passwordInput">{{msg $ "password"}}</label>
-            <input type="password" class="form-control" id="passwordInput" placeholder='{{msg $ "password"}}'
-                   size="20"
-                   name="{{$field.Name}}" value="{{$field.Flash}}">
-            <span class="error">{{$field.Error}}</span>
-        </div>
-        {{end}}
-
-        {{with $field := field "user.Name" .}}
-        <div class="form-group {{$field.ErrorClass}}">
-            <label for="userNameInput">{{msg $ "name"}}</label>
-            <input type="text" class="form-control" id="userNameInput" placeholder='{{msg $ "name"}}' size="20"
-                   name="{{$field.Name}}" value="{{$field.Flash}}">
-            <span class="error">{{$field.Error}}</span>
-        </div>
-        {{end}}
-
-
-        <input type="submit" value='{{msg $ "signup"}}'/>
-    </form>
-</div>
+</section>
 
 {{template "footer.html" .}}

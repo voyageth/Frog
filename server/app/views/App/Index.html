@@ -1,15 +1,16 @@
 {{set . "title" "Home"}}
 {{template "header.html" .}}
 
-<div class="container">
-    <h1>main!</h1>
-
-    <p>
-        <a href='{{url "UserController.Index"}}'>Login</a>
-    </p>
-    <p>
-        <a href='{{url "UserController.Register"}}'>Register New User</a>
-    </p>
-</div>
+<!-- Banner -->
+<section id="banner">
+    <div class="inner">
+        <h2>Frog</h2>
+        <p>frog frog <a href="https://github.com/voyageth/frog">FROG</a></p>
+        <ul class="actions">
+            <li><a href='{{url "UserController.Register"}}' class="button big special">Sign Up</a></li>
+            <li><a href="#elements" class="button big alt">Learn More</a></li>
+        </ul>
+    </div>
+</section>
 
 {{template "footer.html" .}}
