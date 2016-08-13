@@ -1,51 +1,55 @@
 {{set . "title" "Home"}}
 {{template "header.html" .}}
 
-<div class="container" id="login">
-    <h1>{{msg . "login.title"}}</h1>
+<section id="three" class="wrapper style1">
+    <div class="container">
+        <h2>{{msg . "login.title"}}</h2>
 
-    <div class="row">
-        <div class="span6">
-            {{template "flash.html" .}}
+        <div class="row">
+            <div class="span6">
+                {{template "flash.html" .}}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="8u">
+                <section>
+
+                    <form action='{{url "UserController.LoginRequest"}}' method="GET">
+                        {{with $field := field "userEmail" .}}
+                        <div class="form-group {{$field.ErrorClass}}">
+                            <label for="emailInput">{{msg $ "email"}}</label>
+                            <input type="email" class="form-control" id="emailInput" placeholder='{{msg $ "email"}}' size="30"
+                                   name="{{$field.Name}}" value="{{$field.Flash}}">
+                            <span class="error">{{$field.Error}}</span>
+                        </div>
+                        {{end}}
+
+                        {{with $field := field "password" .}}
+                        <div class="form-group {{$field.ErrorClass}}">
+                            <label for="passwordInput">{{msg $ "password"}}</label>
+                            <input type="password" class="form-control" id="passwordInput" placeholder='{{msg $ "password"}}' size="20"
+                                   name="{{$field.Name}}" value="{{$field.Flash}}">
+                            <span class="error">{{$field.Error}}</span>
+                        </div>
+                        {{end}}
+
+                        {{with $field := field "remember" .}}
+                        <div class="form-group {{$field.ErrorClass}}">
+                            <label for="rememberInput">remember</label>
+                            <input type="checkbox" class="form-control" id="rememberInput" name="{{$field.Name}}"
+                                   value="{{$field.Flash}}">
+                            <span class="error">{{$field.Error}}</span>
+                        </div>
+                        {{end}}
+
+
+                        <input type="submit" value='{{msg $ "login"}}'/>
+                    </form>
+                </section>
+            </div>
         </div>
     </div>
-
-    <form action='{{url "UserController.LoginRequest"}}' method="GET">
-        {{with $field := field "userEmail" .}}
-        <div class="form-group {{$field.ErrorClass}}">
-            <label for="emailInput">Email</label>
-            <input type="email" class="form-control" id="emailInput" placeholder="Email" size="30"
-                   name="{{$field.Name}}" value="{{$field.Flash}}">
-            <span class="error">{{$field.Error}}</span>
-        </div>
-        {{end}}
-
-        {{with $field := field "password" .}}
-        <div class="form-group {{$field.ErrorClass}}">
-            <label for="passwordInput">Password</label>
-            <input type="password" class="form-control" id="passwordInput" placeholder="Password" size="20"
-                   name="{{$field.Name}}" value="{{$field.Flash}}">
-            <span class="error">{{$field.Error}}</span>
-        </div>
-        {{end}}
-
-        {{with $field := field "remember" .}}
-        <div class="form-group {{$field.ErrorClass}}">
-            <label for="rememberInput">remember</label>
-            <input type="checkbox" class="form-control" id="rememberInput" name="{{$field.Name}}"
-                   value="{{$field.Flash}}">
-            <span class="error">{{$field.Error}}</span>
-        </div>
-        {{end}}
-
-
-        <input type="submit" value="Sign In"/>
-    </form>
-
-    <p>
-        <a href='{{url "UserController.Register"}}'>Register New User</a>
-    </p>
-
-</div>
+</section>
 
 {{template "footer.html" .}}
