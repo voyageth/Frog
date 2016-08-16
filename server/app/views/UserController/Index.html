@@ -19,7 +19,8 @@
                         {{with $field := field "userEmail" .}}
                         <div class="form-group {{$field.ErrorClass}}">
                             <label for="emailInput">{{msg $ "email"}}</label>
-                            <input type="email" class="form-control" id="emailInput" placeholder='{{msg $ "email"}}' size="30"
+                            <input type="email" class="form-control" id="emailInput" placeholder='{{msg $ "email"}}'
+                                   size="30"
                                    name="{{$field.Name}}" value="{{$field.Flash}}">
                             <span class="error">{{$field.Error}}</span>
                         </div>
@@ -28,7 +29,8 @@
                         {{with $field := field "password" .}}
                         <div class="form-group {{$field.ErrorClass}}">
                             <label for="passwordInput">{{msg $ "password"}}</label>
-                            <input type="password" class="form-control" id="passwordInput" placeholder='{{msg $ "password"}}' size="20"
+                            <input type="password" class="form-control" id="passwordInput"
+                                   placeholder='{{msg $ "password"}}' size="20"
                                    name="{{$field.Name}}" value="{{$field.Flash}}">
                             <span class="error">{{$field.Error}}</span>
                         </div>
@@ -36,15 +38,17 @@
 
                         {{with $field := field "remember" .}}
                         <div class="form-group {{$field.ErrorClass}}">
-                            <label for="rememberInput">remember</label>
                             <input type="checkbox" class="form-control" id="rememberInput" name="{{$field.Name}}"
                                    value="{{$field.Flash}}">
+                            <label for="rememberInput">remember</label>
                             <span class="error">{{$field.Error}}</span>
                         </div>
                         {{end}}
 
 
-                        <input type="submit" value='{{msg $ "login"}}'/>
+                        <div class="form-group">
+                            <input type="submit" value='{{msg $ "login"}}'/>
+                        </div>
                     </form>
                 </section>
             </div>
