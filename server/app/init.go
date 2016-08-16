@@ -2,6 +2,7 @@ package app
 
 import (
 	"github.com/revel/revel"
+	"frog/server/app/controllers"
 )
 
 func init() {
@@ -18,6 +19,7 @@ func init() {
 		HeaderFilter,                  // Add some security based headers
 		revel.InterceptorFilter,       // Run interceptors around the action.
 		revel.CompressFilter,          // Compress the result.
+		controllers.UserLoginFilter,
 		revel.ActionInvoker,           // Invoke the action.
 	}
 

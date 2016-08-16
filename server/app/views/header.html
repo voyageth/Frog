@@ -29,8 +29,15 @@
     <nav id="nav">
         <ul>
             <li><a href='{{url "App.Index"}}'>Home</a></li>
+
+            {{if .userEmail}}
+            <li>{{.userEmail}}</li>
+            <li><a href='{{url "UserController.Logout"}}'>Logout</a></li>
+            {{else}}
             <li><a href='{{url "UserController.Index"}}'>Login</a></li>
             <li><a href='{{url "UserController.Register"}}'>Sign Up</a></li>
+            {{end}}
+
         </ul>
     </nav>
 </header>

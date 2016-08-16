@@ -36,7 +36,6 @@ func (c UserController) LoginRequest(userEmail string, password string) revel.Re
 	passwordCompareErr := bcrypt.CompareHashAndPassword(hashedPassword, []byte(password))
 	if passwordCompareErr == nil {
 		// TODO #6 more complicate login cookie
-		// TODO #6 add login validation interceptor
 		c.Session[SESSION_KEY_LOGIN] = userEmail
 		return c.Redirect(App.Index)
 	} else {
