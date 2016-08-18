@@ -7,10 +7,11 @@ import (
 	"golang.org/x/crypto/bcrypt"
 	"github.com/go-sql-driver/mysql"
 	"strings"
+	"frog/server/app/controllers"
 )
 
 type UserController struct {
-	App
+	controllers.App
 }
 
 const SESSION_KEY_LOGIN = "frog_login"
@@ -37,7 +38,7 @@ func (c UserController) LoginRequest(userEmail string, password string) revel.Re
 	if passwordCompareErr == nil {
 		// TODO #6 more complicate login cookie
 		c.Session[SESSION_KEY_LOGIN] = userEmail
-		return c.Redirect(App.Index)
+		return c.Redirect(controllers.App.Index)
 	} else {
 		log.Println(passwordCompareErr.Error())
 		c.Flash.Error(c.Message("user.login.password.wrong"))
@@ -49,7 +50,7 @@ func (c UserController) LoginRequest(userEmail string, password string) revel.Re
 
 func (c UserController) Logout() revel.Result {
 	delete(c.Session, SESSION_KEY_LOGIN)
-	return c.Redirect(App.Index)
+	return c.Redirect(controllers.App.Index)
 }
 
 func (c UserController) Register() revel.Result {
