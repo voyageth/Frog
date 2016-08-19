@@ -2,7 +2,8 @@ package app
 
 import (
 	"github.com/revel/revel"
-	"frog/server/app/web/controllers"
+	"frog/server/app/controllers/web"
+	"frog/server/app/controllers/admin"
 )
 
 func init() {
@@ -19,9 +20,11 @@ func init() {
 		HeaderFilter, // Add some security based headers
 		revel.InterceptorFilter, // Run interceptors around the action.
 		revel.CompressFilter, // Compress the result.
-		controllers.UserLoginFilter,
 		revel.ActionInvoker, // Invoke the action.
 	}
+
+	revel.FilterController(web_controllers.UserController{}).Insert(web_controllers.UserLoginFilter, revel.BEFORE, revel.ActionInvoker)
+	revel.FilterController(admin_controllers.CompanyController{}).Insert(admin_controllers.AdminUserCheckFilter, revel.BEFORE, revel.ActionInvoker)
 
 	// register startup functions with OnAppStart
 	// ( order dependent )

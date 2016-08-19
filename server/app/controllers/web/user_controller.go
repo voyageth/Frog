@@ -1,4 +1,4 @@
-package controllers
+package web_controllers
 
 import (
 	"github.com/revel/revel"
@@ -11,7 +11,7 @@ import (
 )
 
 type UserController struct {
-	controllers.App
+	WebController
 }
 
 const SESSION_KEY_LOGIN = "frog_login"

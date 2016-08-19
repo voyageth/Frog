@@ -1,9 +1,14 @@
-package controllers
+package web_controllers
 
 import (
 	"github.com/revel/revel"
+	"frog/server/app/controllers"
 	"log"
 )
+
+type WebController struct {
+	controllers.App
+}
 
 func UserLoginFilter(c *revel.Controller, fc []revel.Filter) {
 	userEmail := c.Session[SESSION_KEY_LOGIN]
