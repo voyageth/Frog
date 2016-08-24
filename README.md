@@ -49,6 +49,10 @@ revel build frog/server tmp
 revel run frog/server dev 8080
 ```
 
+## debug application in intellij
+from http://brantiffy.axisj.com/archives/604
+<img src="images/intellij_debug.PNG"/>
+
 ## Css Template
 https://templated.co/ion
 
