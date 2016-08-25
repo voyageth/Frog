@@ -51,7 +51,7 @@ revel run frog/server dev 8080
 
 ## debug application in intellij
 from http://brantiffy.axisj.com/archives/604
-<img src="images/intellij_go_run_configuration"/>
+<img src="images/intellij_go_run_configuration.PNG"/>
 
 ## Css Template
 https://templated.co/ion
