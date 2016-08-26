@@ -1,6 +1,8 @@
 # Frog
 Simple Go Web Application
 
+[![Build Status](https://travis-ci.org/voyageth/frog.svg?branch=develop)](https://travis-ci.org/voyageth/frog)
+
 ## Getting Started
 ### clone in $GO_PATH
 ```
