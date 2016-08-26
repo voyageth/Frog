@@ -18,7 +18,7 @@ install:
 
 script:
   - pwd
-  - revel build ../frog/server tmp
+  - revel build github.com/voyageth/frog/server tmp
 
 matrix:
   allow_failures:
