@@ -7,14 +7,12 @@ Simple Go Web Application
 ### clone in $GO_PATH
 ```
 cd $GO_PATH
-mkdir frog
-cd frog
-git clone https://github.com/voyageth/frog.git
+git clone https://github.com/voyageth/frog.git github.com/voyageth/frog
 ```
 
 ### change directory
 ```
-cd $GO_PATH/frog
+cd $GO_PATH/github.com/voyageth/frog
 ```
 
 ### setting conf file
@@ -43,12 +41,12 @@ go get -t golang.org/x/crypto/bcrypt
 
 ### build
 ```
-revel build frog/server tmp
+revel build github.com/voyageth/frog/server tmp
 ```
 
 ## run application
 ```
-revel run frog/server dev 8080
+revel run github.com/voyageth/frog/server dev 8080
 ```
 
 ## debug application in intellij
