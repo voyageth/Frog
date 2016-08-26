@@ -18,6 +18,7 @@ install:
 
 script:
   - pwd
+  - cp sever/conf/app.conf.sample server/conf/app.conf
   - revel build github.com/voyageth/frog/server tmp
 
 matrix:
