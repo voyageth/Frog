@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-revel run frog/server dev 8080
+revel run github.com/voyageth/frog/server dev 8080

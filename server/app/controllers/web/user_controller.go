@@ -3,11 +3,11 @@ package web_controllers
 import (
 	"github.com/revel/revel"
 	"log"
-	"frog/server/app/models"
+	"github.com/voyageth/frog/server/app/models"
 	"golang.org/x/crypto/bcrypt"
 	"github.com/go-sql-driver/mysql"
 	"strings"
-	"frog/server/app/controllers"
+	"github.com/voyageth/frog/server/app/controllers"
 )
 
 type UserController struct {

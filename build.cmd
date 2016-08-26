@@ -1,3 +1,3 @@
 rmdir /S /Q tmp
-revel build frog/server tmp
+revel build github.com/voyageth/frog/server tmp
 

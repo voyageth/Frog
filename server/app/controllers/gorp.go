@@ -2,7 +2,7 @@ package controllers
 
 import (
 	"database/sql"
-	"frog/server/app/models"
+	"github.com/voyageth/frog/server/app/models"
 	"github.com/go-gorp/gorp"
 	_ "github.com/go-sql-driver/mysql"
 	r "github.com/revel/revel"

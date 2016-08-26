@@ -2,8 +2,8 @@ package app
 
 import (
 	"github.com/revel/revel"
-	"frog/server/app/controllers/web"
-	"frog/server/app/controllers/admin"
+	"github.com/voyageth/frog/server/app/controllers/web"
+	"github.com/voyageth/frog/server/app/controllers/admin"
 )
 
 func init() {

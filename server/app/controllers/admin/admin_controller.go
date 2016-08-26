@@ -2,7 +2,7 @@ package admin_controllers
 
 import (
 	"github.com/revel/revel"
-	"frog/server/app/controllers/web"
+	"github.com/voyageth/frog/server/app/controllers/web"
 	"log"
 )
 
