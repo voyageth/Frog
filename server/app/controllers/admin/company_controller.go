@@ -22,3 +22,7 @@ func (c CompanyController) Index() revel.Result {
 	}
 	return c.Render()
 }
+
+func (c CompanyController) Register() revel.Result {
+	return c.Redirect(CompanyController.Index)
+}

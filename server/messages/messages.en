@@ -25,3 +25,6 @@ user.register.email.duplicated=Duplicate email.
 user.register.name.duplicated=Duplicate name.
 user.login.password.wrong=Wrong password!
 login.title=Login
+company=Company
+company.register=Register
+create=»ý¼º

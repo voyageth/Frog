@@ -19,3 +19,6 @@ user.register.email.duplicated=이미 사용 중인 Email 입니다.
 user.register.name.duplicated=이미 사용 중인 이름 입니다.
 user.login.password.wrong=비밀번호가 틀렸습니다.
 login.title=로그인
+company=회사
+company.register=등록
+create=생성
