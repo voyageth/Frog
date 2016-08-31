@@ -15,6 +15,31 @@
         <div class="row">
             <div class="8u">
                 <section>
+                    <h3>{{msg . "list"}}</h3>
+                </section>
+                <section>
+                    company 1
+                </section>
+                <section>
+                    company 2
+                </section>
+                <section>
+                    company 3
+                </section>
+                <section>
+                    company ...
+                </section>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="row">
+            <div class="8u">
+                <section>
+                    <h3>{{msg . "create"}}</h3>
+                </section>
+                <section>
                     <form action='{{url "CompanyController.Register"}}' method="GET">
                         {{with $field := field "company.Name" .}}
                         <div class="form-group {{$field.ErrorClass}}">
