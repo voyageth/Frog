@@ -30,6 +30,8 @@
         <ul>
             <li><a href='{{url "App.Index"}}'>Home</a></li>
 
+            <li><a href='{{url "CompanyController.Index"}}'>Company</a></li>
+
             {{if .userEmail}}
             <li>{{.userEmail}}</li>
             <li><a href='{{url "UserController.Logout"}}'>Logout</a></li>

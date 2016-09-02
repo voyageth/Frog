@@ -29,3 +29,4 @@ company=Company
 company.register=Register
 create=»ı¼º
 list=List
+company.register.name.duplicated=Duplicated company name.

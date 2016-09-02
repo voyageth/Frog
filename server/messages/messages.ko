@@ -23,3 +23,4 @@ company=회사
 company.register=등록
 create=생성
 list=목록
+company.register.name.duplicated=이미 사용 중인 회사명 입니다.
