@@ -15,18 +15,25 @@ script:
 - cp server/conf/app.conf.sample server/conf/app.conf
 - revel build github.com/voyageth/frog/server latest-build
 deploy:
-  provider: codedeploy
+- provider: s3
   access_key_id: AKIAJQ445GMJJ6VXUNPQ
-  secret_access_key:
+  secret_access_key: &1
     secure: am+aQ4tSn0WJfKXdg8u2BdqmC3+eiJH5U12Vr/OGo86tOOY0OH5yBdHRfjTrhLdkyo3LSbduw5d4T2vU59iVIfJlQUT8vjVQfHgDaJm6eh0jJQL4mmn3XmsYeXROHcZUBIjJRCjsLqIcosj1qqOCODF0eQwjUrY700AtRQjKvV7vc3C67Ma5+pwiDtToYrE1MMG2u+nnjg4plK8tIwg7NgqDpFzAhGzhVtmoZxl3efNOttK/q/RbF5jAk71C5hibL3U+jWp5hBe1wS9fO7NhV/AR6Y0PLThSwLEXfJDdyIs/L8fMID7bqIaPsa8X9q2e+D04tpFaJztuWcq2WEeB0/q2ydzrAH+lCR2RzbOsvyH6A426NmJ6s6YvRa0yzf22EFBazu3icWcZO/cN99UeJCUSlvoQJcwQerJjBFroWNvcby/sWiKuXCz/BxewzR9w++/ExH3mhxL0+Hbg03ElNfE6AqWDm+YrL3BbcTpetNJ+Udiig/O/ZlaLkrNRsG/4Z6ptu/NJ8h7t6jRxoPv1Ql1RkvCpluuzPdwZXDNDcjk7sTcRi+xJSakfiGO1NlnwZ1NZNVqu1ZXGmHv7rRY4mpNtMKOQ/sPVd9h44rfUcdP6Dfdy7Y1iFJpHIC0eo4l1ckvhX8BT5y/kslBDuQCqKrnXEKZbJY7wcdGaO8PB8OA=
+  local_dir: dpl_cd_upload
+  skip_cleanup: true
+  on: &2
+    repo: voyageth/frog
+    branch: develop
+  bucket: voyageth-frog
+- provider: codedeploy
+  access_key_id: AKIAJQ445GMJJ6VXUNPQ
+  secret_access_key: *1
   bucket: voyageth-frog
   key: latest-build.zip
   bundle_type: zip
   application: frog
   deployment_group: frog-api
-  on:
-    repo: voyageth/frog
-    branch: develop
+  on: *2
 before_deploy:
 - zip -r latest-build *
 - mkdir -p dpl_cd_upload
