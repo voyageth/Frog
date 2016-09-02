@@ -26,6 +26,7 @@ deploy:
     repo: voyageth/frog
     branch: develop
   bucket: voyageth-frog
+  region: ap-northeast-2
 - provider: codedeploy
   access_key_id: AKIAJQ445GMJJ6VXUNPQ
   secret_access_key: *1
@@ -35,6 +36,7 @@ deploy:
   application: frog
   deployment_group: frog-api
   on: *2
+  region: ap-northeast-2
 before_deploy:
 - zip -r latest-build *
 - mkdir -p dpl_cd_upload
