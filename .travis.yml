@@ -1,7 +1,6 @@
 language: go
 go:
 - 1.6
-- tip
 os:
 - linux
 sudo: false
@@ -15,9 +14,6 @@ script:
 - pwd
 - cp server/conf/app.conf.sample server/conf/app.conf
 - revel build github.com/voyageth/frog/server latest-build
-matrix:
-  allow_failures:
-  - go: tip
 deploy:
 - provider: s3
   access_key_id: AKIAJQ445GMJJ6VXUNPQ
