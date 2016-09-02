@@ -15,25 +15,18 @@ script:
 - cp server/conf/app.conf.sample server/conf/app.conf
 - revel build github.com/voyageth/frog/server latest-build
 deploy:
-- provider: s3
+  provider: codedeploy
   access_key_id: AKIAJQ445GMJJ6VXUNPQ
-  secret_access_key: &1
-    secure: CXs4v212qrJhbs3DEVXp9HaFciWPqN5i7DluxI15fpH0t402Cn0aQNgnt2pL+gGYg8eqhvXnq4ycna6UbbCQD9Xf8JD1OlJrAafqNv5xbOtMuuaD/XEpeLrT39r1dmYk90KOADLyolJKdkyaoqpNVAK6d3yC5y2LZa5NcfsdfqoKrZxbagdNJ+ewl6PqhgsjdlIl0su2cERKUOZtETz4mZuOk9bRiMJ5Kr6UG0Dbu4bkjdng1n3XwLq425195Rg/g7W4OiGgN1wTZMrp4tYuoRg281eVNatNN9uIh3LySShOTen5crWzKPv+MVci3T7AOr0Aq19RXFiwLMr0vdGntT8vxxcyi/AgGzhcvnbHrM2avIZnOWPw6F/ZIYg1zAuVtEtW7+kvaf0AA2cxjNZRX19EBsx5n99qEQ3MLA8ar774P5KP+InMqdn9NOzXy0IhikJuyAEX2FAISWj7wRHqHRKTmKXpwbX6fyT6ypkJgFQjHThrbzlkQTn7/pZzNz/nWGsQQW6o+GJ6aGltulpr2tSgTHjmKURo/RWh95leEFQilUt7Pw2r+bVAac9MWB/tgceteWNtRUTUuJNmIcsWqbmcbG+pLGXMRFWQG4kn9Ac0EIuSfVzoBm0H2Zy7zsDNBtQOrDsUIJiQFpIll7b/H2+gW/ZAVCipPOqZ0fY3oCI=
-  local_dir: dpl_cd_upload
-  skip_cleanup: true
-  on: &2
-    repo: voyageth/frog
-    branch: develop
-  bucket: voyageth-frog
-- provider: codedeploy
-  access_key_id: AKIAJQ445GMJJ6VXUNPQ
-  secret_access_key: *1
+  secret_access_key:
+    secure: am+aQ4tSn0WJfKXdg8u2BdqmC3+eiJH5U12Vr/OGo86tOOY0OH5yBdHRfjTrhLdkyo3LSbduw5d4T2vU59iVIfJlQUT8vjVQfHgDaJm6eh0jJQL4mmn3XmsYeXROHcZUBIjJRCjsLqIcosj1qqOCODF0eQwjUrY700AtRQjKvV7vc3C67Ma5+pwiDtToYrE1MMG2u+nnjg4plK8tIwg7NgqDpFzAhGzhVtmoZxl3efNOttK/q/RbF5jAk71C5hibL3U+jWp5hBe1wS9fO7NhV/AR6Y0PLThSwLEXfJDdyIs/L8fMID7bqIaPsa8X9q2e+D04tpFaJztuWcq2WEeB0/q2ydzrAH+lCR2RzbOsvyH6A426NmJ6s6YvRa0yzf22EFBazu3icWcZO/cN99UeJCUSlvoQJcwQerJjBFroWNvcby/sWiKuXCz/BxewzR9w++/ExH3mhxL0+Hbg03ElNfE6AqWDm+YrL3BbcTpetNJ+Udiig/O/ZlaLkrNRsG/4Z6ptu/NJ8h7t6jRxoPv1Ql1RkvCpluuzPdwZXDNDcjk7sTcRi+xJSakfiGO1NlnwZ1NZNVqu1ZXGmHv7rRY4mpNtMKOQ/sPVd9h44rfUcdP6Dfdy7Y1iFJpHIC0eo4l1ckvhX8BT5y/kslBDuQCqKrnXEKZbJY7wcdGaO8PB8OA=
   bucket: voyageth-frog
   key: latest-build.zip
   bundle_type: zip
   application: frog
-  deployment_group: Production
-  on: *2
+  deployment_group: frog-api
+  on:
+    repo: voyageth/frog
+    branch: develop
 before_deploy:
 - zip -r latest-build *
 - mkdir -p dpl_cd_upload
