@@ -1,26 +1,44 @@
 language: go
-
 go:
-  - 1.6
-  - tip
-
+- 1.6
+- tip
 os:
-  - linux
-
+- linux
 sudo: false
-
 install:
-  - go get -t github.com/revel/revel
-  - go get -t github.com/revel/cmd/revel
-  - go get -t github.com/go-gorp/gorp
-  - go get -t github.com/go-sql-driver/mysql
-  - go get -t golang.org/x/crypto/bcrypt
-
+- go get -t github.com/revel/revel
+- go get -t github.com/revel/cmd/revel
+- go get -t github.com/go-gorp/gorp
+- go get -t github.com/go-sql-driver/mysql
+- go get -t golang.org/x/crypto/bcrypt
 script:
-  - pwd
-  - cp server/conf/app.conf.sample server/conf/app.conf
-  - revel build github.com/voyageth/frog/server tmp
-
+- pwd
+- cp server/conf/app.conf.sample server/conf/app.conf
+- revel build github.com/voyageth/frog/server latest-build
 matrix:
   allow_failures:
-    - go: tip
+  - go: tip
+deploy:
+- provider: s3
+  access_key_id: AKIAJQ445GMJJ6VXUNPQ
+  secret_access_key: &1
+    secure: CXs4v212qrJhbs3DEVXp9HaFciWPqN5i7DluxI15fpH0t402Cn0aQNgnt2pL+gGYg8eqhvXnq4ycna6UbbCQD9Xf8JD1OlJrAafqNv5xbOtMuuaD/XEpeLrT39r1dmYk90KOADLyolJKdkyaoqpNVAK6d3yC5y2LZa5NcfsdfqoKrZxbagdNJ+ewl6PqhgsjdlIl0su2cERKUOZtETz4mZuOk9bRiMJ5Kr6UG0Dbu4bkjdng1n3XwLq425195Rg/g7W4OiGgN1wTZMrp4tYuoRg281eVNatNN9uIh3LySShOTen5crWzKPv+MVci3T7AOr0Aq19RXFiwLMr0vdGntT8vxxcyi/AgGzhcvnbHrM2avIZnOWPw6F/ZIYg1zAuVtEtW7+kvaf0AA2cxjNZRX19EBsx5n99qEQ3MLA8ar774P5KP+InMqdn9NOzXy0IhikJuyAEX2FAISWj7wRHqHRKTmKXpwbX6fyT6ypkJgFQjHThrbzlkQTn7/pZzNz/nWGsQQW6o+GJ6aGltulpr2tSgTHjmKURo/RWh95leEFQilUt7Pw2r+bVAac9MWB/tgceteWNtRUTUuJNmIcsWqbmcbG+pLGXMRFWQG4kn9Ac0EIuSfVzoBm0H2Zy7zsDNBtQOrDsUIJiQFpIll7b/H2+gW/ZAVCipPOqZ0fY3oCI=
+  local_dir: dpl_cd_upload
+  skip_cleanup: true
+  on: &2
+    repo: voyageth/frog
+    branch: develop
+  bucket: voyageth-frog
+- provider: codedeploy
+  access_key_id: AKIAJQ445GMJJ6VXUNPQ
+  secret_access_key: *1
+  bucket: voyageth-frog
+  key: latest-build.zip
+  bundle_type: zip
+  application: frog
+  deployment_group: Production
+  on: *2
+before_deploy:
+- zip -r latest-build *
+- mkdir -p dpl_cd_upload
+- mv latest-build.zip dpl_cd_upload/latest-build.zip
