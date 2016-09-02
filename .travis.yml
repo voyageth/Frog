@@ -32,7 +32,7 @@ deploy:
   key: latest-build.zip
   bundle_type: zip
   application: frog
-  deployment_group: Production
+  deployment_group: frog-api
   on: *2
 before_deploy:
 - zip -r latest-build *
