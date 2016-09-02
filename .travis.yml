@@ -5,6 +5,7 @@ go:
 
 os:
 - linux
+
 sudo: false
 install:
 - go get -t github.com/revel/revel
