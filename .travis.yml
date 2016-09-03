@@ -13,6 +13,7 @@ install:
 - go get -t github.com/go-gorp/gorp
 - go get -t github.com/go-sql-driver/mysql
 - go get -t golang.org/x/crypto/bcrypt
+
 script:
 - pwd
 - cp server/conf/app.conf.sample server/conf/app.conf
