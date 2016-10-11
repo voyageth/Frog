@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-revel run github.com/voyageth/frog/server dev 8080
+$GOPATH/bin/revel run github.com/voyageth/frog/server dev 8080
