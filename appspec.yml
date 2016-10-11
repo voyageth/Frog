@@ -1,6 +1,8 @@
 version: 0.0
 os: linux
 hooks:
+  BeforeInstall:
+    - location: install_go_libs.sh
   ApplicationStart:
     - location: run.sh
       timeout: 3600
