@@ -4,5 +4,5 @@ hooks:
   BeforeInstall:
     - location: install_go_libs.sh
   ApplicationStart:
-    - location: latest-build/run.sh
+    - location: latest-build/run.sh&
       timeout: 3600
