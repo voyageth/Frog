@@ -1,5 +1,4 @@
 sudo yum -y install go
-mkdir /home/ec2-user/gopath
 export GOPATH=/home/ec2-user/go
 go get -t github.com/revel/revel
 go get -t github.com/revel/cmd/revel
