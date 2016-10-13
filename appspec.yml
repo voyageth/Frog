@@ -2,10 +2,10 @@ version: 0.0
 os: linux
 hooks:
   ApplicationStop:
-    - location: stop.sh
+    - location: application_stop.sh
       timeout: 3600
   BeforeInstall:
-    - location: install_go_libs.sh
+    - location: before_install.sh
   ApplicationStart:
-    - location: run.sh
+    - location: application_start.sh
       timeout: 3600
