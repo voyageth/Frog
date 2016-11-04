@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-latest-build/run.sh&
+nohup latest-build/run.sh 1>/dev/null 2>&1 &
