@@ -1,6 +1,9 @@
 version: 0.0
 os: linux
 hooks:
+  ApplicationStop:
+    - location: application_stop.sh
+      timeout: 3600
   BeforeInstall:
     - location: before_install.sh
   ApplicationStart:
