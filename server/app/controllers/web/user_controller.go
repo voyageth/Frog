@@ -2,7 +2,7 @@ package web_controllers
 
 import (
 	"github.com/revel/revel"
-	"log"
+	r "github.com/revel/revel"
 	"github.com/voyageth/frog/server/app/models"
 	"golang.org/x/crypto/bcrypt"
 	"github.com/go-sql-driver/mysql"
@@ -23,11 +23,11 @@ func (c UserController) Index() revel.Result {
 func (c UserController) LoginRequest(userEmail string, password string) revel.Result {
 	var user models.User
 	err := c.Txn.SelectOne(&user, "select * from User where Email=?", userEmail)
-	log.Println(user)
-	log.Println(err)
+	r.TRACE.Println(user)
+	r.TRACE.Println(err)
 	if err != nil {
-		log.Println(err.Error())
-		c.Flash.Error(c.Message("server.error"))
+		r.TRACE.Println(err.Error())
+		c.Flash.Error(c.Message("user.login.email.nonexistent"))
 		c.Validation.Keep()
 		c.FlashParams()
 		return c.Redirect(UserController.Index)
@@ -36,11 +36,11 @@ func (c UserController) LoginRequest(userEmail string, password string) revel.Re
 	hashedPassword := user.HashedPassword
 	passwordCompareErr := bcrypt.CompareHashAndPassword(hashedPassword, []byte(password))
 	if passwordCompareErr == nil {
-		// TODO #6 more complicate login cookie
+		// TODO #6 more secure login cookie
 		c.Session[SESSION_KEY_LOGIN] = userEmail
 		return c.Redirect(controllers.App.Index)
 	} else {
-		log.Println(passwordCompareErr.Error())
+		r.TRACE.Println(passwordCompareErr.Error())
 		c.Flash.Error(c.Message("user.login.password.wrong"))
 		c.Validation.Keep()
 		c.FlashParams()
@@ -58,8 +58,8 @@ func (c UserController) Register() revel.Result {
 }
 
 func (c UserController) RegisterRequest(user *models.User) revel.Result {
-	log.Print(revel.MessageLanguages())
-	log.Print("user : ", user)
+	r.TRACE.Print(revel.MessageLanguages())
+	r.TRACE.Print("user : ", user)
 
 	user.Validate(c.Controller, c.Validation)
 
@@ -72,7 +72,7 @@ func (c UserController) RegisterRequest(user *models.User) revel.Result {
 	// Hashing the password with the default cost of 10
 	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(user.Password), bcrypt.DefaultCost)
 	if err != nil {
-		log.Println(err.Error())
+		r.TRACE.Println(err.Error())
 		c.Flash.Error(c.Message("server.error"))
 		c.Validation.Keep()
 		c.FlashParams()
@@ -82,7 +82,7 @@ func (c UserController) RegisterRequest(user *models.User) revel.Result {
 
 	err = c.Txn.Insert(user)
 	if err != nil {
-		log.Println(err.Error())
+		r.TRACE.Println(err.Error())
 		if mysqlError, ok := err.(*mysql.MySQLError); ok {
 			if mysqlError.Number == 1062 {
 				if strings.Contains(err.Error(), "for key 'Email'") {

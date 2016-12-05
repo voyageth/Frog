@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"github.com/revel/revel"
 	"regexp"
-	"log"
+	r "github.com/revel/revel"
 )
 
 type User struct {
@@ -23,7 +23,7 @@ func (user *User) String() string {
 var userRegex = regexp.MustCompile(`\w[-._\w]*\w@\w[-._\w]*\w\.\w{2,3}`)
 
 func (user *User) Validate(c *revel.Controller, v *revel.Validation) {
-	log.Print("user : " + user.Email)
+	r.TRACE.Print("user : " + user.Email)
 	v.Required(user.Email).Message(c.Message("user.register.email.required"))
 	v.MinSize(user.Email, 3).Message(c.Message("user.register.email.tooShort"))
 	v.MaxSize(user.Email, 30).Message(c.Message("user.register.email.tooLong"))

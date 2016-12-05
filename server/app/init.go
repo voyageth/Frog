@@ -24,8 +24,8 @@ func init() {
 	}
 
 	// user login check
-	revel.FilterController(web_controllers.UserController{}).Insert(web_controllers.UserLoginFilter, revel.BEFORE, revel.ActionInvoker)
-	revel.FilterController(admin_controllers.CompanyController{}).Insert(web_controllers.UserLoginFilter, revel.BEFORE, revel.ActionInvoker)
+	revel.FilterController(web_controllers.WebController{}).Insert(web_controllers.UserLoginFilter, revel.BEFORE, revel.ActionInvoker)
+	revel.FilterController(admin_controllers.AdminController{}).Insert(web_controllers.UserLoginFilter, revel.BEFORE, revel.ActionInvoker)
 
 	// admin check
 	revel.FilterController(admin_controllers.CompanyController{}).Insert(admin_controllers.AdminUserCheckFilter, revel.BEFORE, revel.ActionInvoker)

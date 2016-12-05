@@ -3,7 +3,7 @@ package admin_controllers
 import (
 	"github.com/revel/revel"
 	"github.com/voyageth/frog/server/app/models"
-	"log"
+	r "github.com/revel/revel"
 	"github.com/go-sql-driver/mysql"
 	"strings"
 )
@@ -14,10 +14,10 @@ type CompanyController struct {
 
 func (c CompanyController) Index() revel.Result {
 	companyList, err := c.Txn.Select(models.Company{}, "select * from Company limit 10")
-	log.Println(companyList)
-	log.Println(err)
+	r.TRACE.Println(companyList)
+	r.TRACE.Println(err)
 	if err != nil {
-		log.Println(err.Error())
+		r.WARN.Println(err.Error())
 		c.Flash.Error(c.Message("server.error"))
 		c.Validation.Keep()
 		c.FlashParams()
@@ -30,7 +30,7 @@ func (c CompanyController) Register() revel.Result {
 }
 
 func (c CompanyController) RegisterRequest(company *models.Company) revel.Result {
-	log.Print("company : ", company)
+	r.TRACE.Print("company : ", company)
 
 	company.Validate(c.Validation)
 
@@ -42,7 +42,7 @@ func (c CompanyController) RegisterRequest(company *models.Company) revel.Result
 
 	err := c.Txn.Insert(company)
 	if err != nil {
-		log.Println(err.Error())
+		r.WARN.Println(err.Error())
 		if mysqlError, ok := err.(*mysql.MySQLError); ok {
 			if mysqlError.Number == 1062 {
 				if strings.Contains(err.Error(), "for key 'Name'") {

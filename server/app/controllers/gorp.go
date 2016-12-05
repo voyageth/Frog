@@ -7,7 +7,6 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 	r "github.com/revel/revel"
 	"github.com/revel/modules/db/app"
-	"log"
 )
 
 var (
@@ -15,7 +14,7 @@ var (
 )
 
 func InitDB() {
-	log.Println("InitDB start")
+	r.INFO.Println("InitDB start")
 
 	db.Init()
 	Dbm = &gorp.DbMap{Db: db.Db, Dialect: gorp.MySQLDialect{Engine: "InnoDB", Encoding: "UTF8"}}
@@ -53,10 +52,10 @@ func InitDB() {
 		"Domain": 200,
 	})
 
-	Dbm.TraceOn("[gorp]", r.INFO)
-	log.Println(Dbm.CreateTablesIfNotExists())
+	Dbm.TraceOn("[gorp]", r.TRACE)
+	r.INFO.Println(Dbm.CreateTablesIfNotExists())
 
-	log.Println("InitDB end")
+	r.INFO.Println("InitDB end")
 }
 
 type GorpController struct {
